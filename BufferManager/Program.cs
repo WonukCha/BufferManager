@@ -10,7 +10,7 @@ namespace BufferManager
             Console.WriteLine("Hello World!");
 
             BufferManager buffer = new BufferManager();
-            buffer.Init(10, 1);
+            buffer.Init(13, 3);
             string input;
             while(true)
             {

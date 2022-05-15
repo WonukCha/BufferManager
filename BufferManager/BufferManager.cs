@@ -48,7 +48,7 @@ namespace BufferManager
             }
             return true;
         }
-        public bool Read(byte[] dest, int destOffset, int count)
+        public bool Read(byte[] dest, int destOffset, int count, bool delete = true)
         {
             if (count > mBufferSize)
                 return false;
@@ -58,8 +58,12 @@ namespace BufferManager
                 return false;
 
             Buffer.BlockCopy(mBuffer, mReadPos, dest, destOffset, count);
-            mReadPos += count;
-            mBufferSize -= count;
+            
+            if(delete)
+            {
+                mReadPos += count;
+                mBufferSize -= count;
+            }
             if (IsFull() == false)
             {
                 LeftShiftBuffer();
